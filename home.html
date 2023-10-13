@@ -33,6 +33,52 @@
     </header>
     <!-- End - Header Section -->
     <!-- Beggin - Home Section - show Recipe'z -->
+        <div id="recipes" class="container mt-5">
+            <script>
+                // Fetch data from the API
+                fetch("http://localhost:3000/recipes")
+                    .then(response => response.json())
+                    .then(data => {
+                        // Get the container where we'll display recipes
+                        const recipesContainer = document.getElementById("recipes");
+
+                        // Loop through the data and create elements for each recipe
+                        data.forEach(recipe => {
+                            const recipeCard = document.createElement("div");
+                            recipeCard.classList.add("card", "mb-3");
+
+                            const cardBody = document.createElement("div");
+                            cardBody.classList.add("card-body");
+
+                            const recipeTitle = document.createElement("h5");
+                            recipeTitle.classList.add("card-title");
+                            recipeTitle.textContent = recipe.title;
+
+                            const recipeIngredients = document.createElement("p");
+                            recipeIngredients.classList.add("card-text");
+                            recipeIngredients.textContent = "Ingredients: " + recipe.ingredients.join(", ");
+
+                            const recipeInstructions = document.createElement("p");
+                            recipeInstructions.classList.add("card-text");
+                            recipeInstructions.textContent = "Instructions: " + recipe.instructions;
+
+                            const recipeCookingTime = document.createElement("p");
+                            recipeCookingTime.classList.add("card-text");
+                            recipeCookingTime.textContent = "Cooking Time: " + recipe.cookingTime;
+
+                            cardBody.appendChild(recipeTitle);
+                            cardBody.appendChild(recipeIngredients);
+                            cardBody.appendChild(recipeInstructions);
+                            cardBody.appendChild(recipeCookingTime);
+                            recipeCard.appendChild(cardBody);
+                            recipesContainer.appendChild(recipeCard);
+                        });
+                    })
+                    .catch(error => {
+                        console.error("Error fetching recipes:", error);
+                    });
+            </script>
+        </div>
     <!-- End - Home Section -->
 
     <!-- Beggin - Bio Section -->
@@ -40,7 +86,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <img src="./Assets/face.jpg" alt="Amani's face" class="img-fluid rounded-circle" style="width: 200px; height: auto;">
+                    <img src="https://placehold.co/400x400" alt="Amani's face" class="img-fluid rounded-circle" style="width: 200px; height: auto;">
                 </div>
                 <div class="col-lg-8">
                     <h2>About Me</h2>
@@ -48,7 +94,7 @@
 
                         Amani has absolutely zero talent in cooking. These recipes are made up. Do not follow! 
                     </p>
-                    <h3>Contact Information</h3>
+                    <h3>Contact Information </h3>
                     <address>
                         Email:    <a href="mailto:amani.rukoijo@gmail.com">amani.rukoijo@gmail.com</a><br>
                         Phone:    +46 70 037 8291<br>
@@ -59,5 +105,11 @@
         </div>
     </section>
     <!-- End - End Section -->
+
+    <!-- beggin javascript dependacies -->
+    <script src="index.js"></script>
+    <script src="connection.js"></script>
+    <script src="recipe.js"></script>
+    <!-- End javascript dependacies -->
 </body>
 </html>
