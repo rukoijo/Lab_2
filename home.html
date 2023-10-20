@@ -36,7 +36,8 @@
         <div id="recipes" class="container mt-5">
             <script>
                 // Fetch data from the API
-                //http://localhost:3000/recipes               
+                // the two lines below are important when deploying application to render or to localhost
+                //http://localhost:3000/recipes
                 fetch("https://lab2-test3.onrender.com/recipes")
                     .then(response => response.json())
                     .then(data => {
