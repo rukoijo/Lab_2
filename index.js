@@ -67,6 +67,11 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/home.html');
   });
 
+  app.get('/about', (req, res) => {
+    res.sendFile(__dirname + '/about.html');
+  });
+
+
 app.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`)
 })
