@@ -10,6 +10,5 @@ async function main(){
     
 }
 
-module.exports=main
+module.exports=main;
 
-// Path: server.js
