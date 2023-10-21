@@ -62,15 +62,14 @@ app.put('/recipes/:recipeId', async (req, res) => {
     }
 });
 
-// Sends the 'home.html' file as a default response to a call to the root URL
+//Sends the 'home.html' file as a default response to a call to the root URL
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/home.html');
   });
 
-  app.get('/about', (req, res) => {
+  app.get('/about.html', (req, res) => {
     res.sendFile(__dirname + '/about.html');
   });
-
 
 app.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`)

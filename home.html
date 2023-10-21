@@ -21,10 +21,10 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#"> Home </a>
+                            <a class="nav-link" href="/"> Home </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#about">About</a>
+                            <a class="nav-link" href="about.html">About</a>
                         </li>
                     </ul>
                 </div>
@@ -37,8 +37,8 @@
             <script>
                 // Fetch data from the API
                 // the two lines below are important when deploying application to render or to localhost
-                // //http://localhost:3000/recipes          
-                fetch("https://lab2-test3.onrender.com/recipes")
+                //https://lab2-test3.onrender.com/recipes   
+                fetch("http://localhost:3000/recipes ")
                     .then(response => response.json())
                     .then(data => {
                         // Get the container where we'll display recipes
