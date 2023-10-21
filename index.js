@@ -62,14 +62,26 @@ app.put('/recipes/:recipeId', async (req, res) => {
     }
 });
 
+//this is the beginning of navigation bar logic ---------------------------- 
 //Sends the 'home.html' file as a default response to a call to the root URL
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/home.html');
   });
 
+//Sends the 'about.html' file as a response to a call. 
   app.get('/about.html', (req, res) => {
     res.sendFile(__dirname + '/about.html');
   });
+
+  app.get('/footer.html', (req, res) => {   
+    res.sendFile(__dirname + '/footer.html');
+  });
+
+    app.get('/header.html', (req, res) => {
+    res.sendFile(__dirname + '/header.html');
+    });
+
+//this is the end of navigation bar logic -------------------------------------
 
 app.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`)
