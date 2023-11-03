@@ -1,7 +1,7 @@
-const PORT = process.env.PORT || 3000; 
+const PORT = process.env.PORT || 3000;
 const express = require("express");
-const connection = require("./connection");
-const Recipe = require("./recipe"); 
+const connection = require("./Scripts/connection");
+const Recipe = require("./Scripts/recipe");
 const app = express();
 exports.app = app;
 require("dotenv").config();
@@ -11,9 +11,9 @@ app.use(express.static('public'));
 app.use(express.json());
 
 //this fetches all the recipes from the database
-app.get('/recipes', async (req, res) => { 
+app.get('/recipes', async (req, res) => {
     try {
-        const recipes = await Recipe.find(); 
+        const recipes = await Recipe.find();
         console.log("GET RECIPE", recipes);
         res.status(200).json(recipes);
     } catch (err) {
@@ -37,10 +37,10 @@ app.get('/recipes/:recipeId', async (req, res) => {
 });
 
 //this adds a recipe to the database
-app.post('/recipes', (req, res) => { 
-    const data = new Recipe(req.body); 
+app.post('/recipes', (req, res) => {
+    const data = new Recipe(req.body);
     data.save()
-        .then(recipe => { 
+        .then(recipe => {
             console.log('Recipe Added!', recipe);
             res.json({ success: true, recipe });
         })
@@ -48,7 +48,7 @@ app.post('/recipes', (req, res) => {
 });
 
 //this updates a recipe in the database based on the recipe id
-app.put('/recipes/:recipeId', async (req, res) => { 
+app.put('/recipes/:recipeId', async (req, res) => {
     try {
         const recipeId = req.params.recipeId;
         const updatedData = req.body;
@@ -62,24 +62,38 @@ app.put('/recipes/:recipeId', async (req, res) => {
     }
 });
 
+//this deletes a recipe from the database based on the recipe id
+app.delete('/recipes/:recipeId', async (req, res) => {
+    try {
+        const recipeId = req.params.recipeId;
+        const deletedRecipe = await Recipe.findByIdAndDelete(recipeId);
+
+        if (!deletedRecipe) {
+            return res.status(404).json({ error: 'Recipe Not found' });
+        } res.json({ success: true, deletedRecipe });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
 //this is the beginning of navigation bar logic ---------------------------- 
 //Sends the 'home.html' file as a default response to a call to the root URL
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/home.html');
-  });
+    res.sendFile(__dirname + '/public/home.html');
+});
 
 //Sends the 'about.html' file as a response to a call. 
-  app.get('/about.html', (req, res) => {
-    res.sendFile(__dirname + '/about.html');
-  });
+app.get('/about.html', (req, res) => {
+    res.sendFile(__dirname + '/public/about.html');
+});
 
-  app.get('/footer.html', (req, res) => {   
-    res.sendFile(__dirname + '/footer.html');
-  });
+// app.get('/footer.html', (req, res) => {
+//     res.sendFile(__dirname + '/public/footer.html');
+// });
 
-    app.get('/header.html', (req, res) => {
-    res.sendFile(__dirname + '/header.html');
-    });
+// app.get('/header.html', (req, res) => {
+//     res.sendFile(__dirname + '/public/header.html');
+// });
 
 //this is the end of navigation bar logic -------------------------------------
 
