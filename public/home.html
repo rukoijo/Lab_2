@@ -11,10 +11,68 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- style -->
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f9;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+            }
+
+            .form-container {
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                width: 300px;
+            }
+
+            .form-container h2 {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .form-group {
+                margin-bottom: 15px;
+            }
+
+            .form-group label {
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            .form-group input {
+                width: 100%;
+                padding: 8px;
+                box-sizing: border-box;
+            }
+
+            .form-group button {
+                width: 100%;
+                padding: 10px;
+                background-color: #00704a;
+                color: #fff;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            .form-group button:hover {
+                background-color: #005c3c;
+            }
+        </style>
+    <!-- style -->
+
 </head>
 <body>
     <!-- Beggin - Header Section -->
     <header>
+        <!--
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#"> Recipe management </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
@@ -32,8 +90,9 @@
                 </ul>
             </div>
         </nav>
+        -->
     </header>
-    
+
     <!-- Beggin - Home Section - show Recipe'z -->
         <div id="recipes" class="container mt-5">
             <script>
@@ -41,47 +100,81 @@
                 // the two lines below are important when deploying application to render or to localhost
                 fetch("https://friday-zcza.onrender.com/recipes")
                     .then(response => response.json())
-                    .then(data => {
-                        // Get the container where we'll display recipes
-                        const recipesContainer = document.getElementById("recipes");
+                    // .then(data => {
+                    //     // Get the container where we'll display recipes
+                    //     const recipesContainer = document.getElementById("recipes");
 
-                        // Loop through the data and create elements for each recipe
-                        data.forEach(recipe => {
-                            const recipeCard = document.createElement("div");
-                            recipeCard.classList.add("card", "mb-3");
+                    //     // Loop through the data and create elements for each recipe
+                    //     data.forEach(recipe => {
+                    //         const recipeCard = document.createElement("div");
+                    //         recipeCard.classList.add("card", "mb-3");
 
-                            const cardBody = document.createElement("div");
-                            cardBody.classList.add("card-body");
+                    //         const cardBody = document.createElement("div");
+                    //         cardBody.classList.add("card-body");
 
-                            const recipeTitle = document.createElement("h5");
-                            recipeTitle.classList.add("card-title");
-                            recipeTitle.textContent = recipe.title;
+                    //         const recipeTitle = document.createElement("h5");
+                    //         recipeTitle.classList.add("card-title");
+                    //         recipeTitle.textContent = recipe.title;
 
-                            const recipeIngredients = document.createElement("p");
-                            recipeIngredients.classList.add("card-text");
-                            recipeIngredients.textContent = "Ingredients: " + recipe.ingredients.join(", ");
+                    //         const recipeIngredients = document.createElement("p");
+                    //         recipeIngredients.classList.add("card-text");
+                    //         recipeIngredients.textContent = "Ingredients: " + recipe.ingredients.join(", ");
 
-                            const recipeInstructions = document.createElement("p");
-                            recipeInstructions.classList.add("card-text");
-                            recipeInstructions.textContent = "Instructions: " + recipe.instructions;
+                    //         const recipeInstructions = document.createElement("p");
+                    //         recipeInstructions.classList.add("card-text");
+                    //         recipeInstructions.textContent = "Instructions: " + recipe.instructions;
 
-                            const recipeCookingTime = document.createElement("p");
-                            recipeCookingTime.classList.add("card-text");
-                            recipeCookingTime.textContent = "Cooking Time: " + recipe.cookingTime;
+                    //         const recipeCookingTime = document.createElement("p");
+                    //         recipeCookingTime.classList.add("card-text");
+                    //         recipeCookingTime.textContent = "Cooking Time: " + recipe.cookingTime;
 
-                            cardBody.appendChild(recipeTitle);
-                            cardBody.appendChild(recipeIngredients);
-                            cardBody.appendChild(recipeInstructions);
-                            cardBody.appendChild(recipeCookingTime);
-                            recipeCard.appendChild(cardBody);
-                            recipesContainer.appendChild(recipeCard);
-                        });
-                    })
-                    .catch(error => {
-                        console.error("Error fetching recipes:", error);
-                    });
+                    //         cardBody.appendChild(recipeTitle);
+                    //         cardBody.appendChild(recipeIngredients);
+                    //         cardBody.appendChild(recipeInstructions);
+                    //         cardBody.appendChild(recipeCookingTime);
+                    //         recipeCard.appendChild(cardBody);
+                    //         recipesContainer.appendChild(recipeCard);
+                    //     });
+                    // })
+                    // .catch(error => {
+                    //     console.error("Error fetching recipes:", error);
+                    // });
             </script>
         </div>
+    <!-- End - Home Section - show Recipe'z -->
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="card-title">Create Account</h2>
+                            <form>
+                                <div class="form-group">
+                                    <label for="firstName">First Name</label>
+                                    <input type="text" id="firstName" name="firstName" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastName">Last Name</label>
+                                    <input type="text" id="lastName" name="lastName" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" name="email" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" id="password" name="password" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
     <!-- beggin javascript dependacies -->
     <script src="index.js"></script>

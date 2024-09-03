@@ -1,2 +1,2 @@
-# Lab_2
-Lab_2 assigned by Deema
+# starbucks clone project
+PUBP-6725-Info Security-Policies

@@ -1,7 +1,7 @@
 {
   "name": "lab_2",
   "version": "1.0.0",
-  "description": "Lab_2 assigned by Deema",
+  "description": "PUBP-6725-Info Security-Policies",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -13,11 +13,11 @@
   "dependencies": {
     "bootstrap": "^5.3.2",
     "dotenv": "^16.3.1",
-    "express": "^4.18.2",
+    "express": "^4.19.2",
     "mongodb": "^6.1.0",
-    "mongoose": "^7.6.2"
+    "mongoose": "^7.8.1"
   },
   "engines": {
-    "node": ">=18.17.1 <19.0.0"
+    "node": ">=18.17.1 <21.0.0"
   }
 }
